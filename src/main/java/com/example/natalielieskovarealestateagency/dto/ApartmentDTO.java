@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,4 +25,5 @@ public class ApartmentDTO {
     private String propertyCondition;
     private String heating;
     private String propertyDescription;
+    private List<String> photoUrls;
 }

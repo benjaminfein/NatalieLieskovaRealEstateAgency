@@ -18,4 +18,5 @@ public class ResidentialComplexDTO {
     private String promotion;
     private Boolean completedOrNot;
     private List<ApartmentCardDTO> apartments;
+    private List<String> photoUrls;
 }

@@ -22,7 +22,8 @@ public class ApartmentMapper {
                 apartment.getCeilingHeight(),
                 apartment.getPropertyCondition(),
                 apartment.getHeating(),
-                apartment.getPropertyDescription()
+                apartment.getPropertyDescription(),
+                apartment.getPhotoUrls()
         );
     }
 
@@ -42,7 +43,8 @@ public class ApartmentMapper {
                 apartmentDTO.getCeilingHeight(),
                 apartmentDTO.getPropertyCondition(),
                 apartmentDTO.getHeating(),
-                apartmentDTO.getPropertyDescription()
+                apartmentDTO.getPropertyDescription(),
+                apartmentDTO.getPhotoUrls()
         );
     }
 
@@ -54,7 +56,8 @@ public class ApartmentMapper {
                 apartment.getCountOfRooms(),
                 apartment.getTotalArea(),
                 apartment.getLivingArea(),
-                apartment.getKitchenArea()
+                apartment.getKitchenArea(),
+                apartment.getPhotoUrls()
         );
     }
 }

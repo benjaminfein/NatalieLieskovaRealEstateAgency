@@ -22,7 +22,8 @@ public class ResidentialComplexMapper {
                 residentialComplex.getDeveloper(),
                 residentialComplex.getPromotion(),
                 residentialComplex.getCompletedOrNot(),
-                apartmentCards
+                apartmentCards,
+                residentialComplex.getPhotoUrls()
         );
     }
 

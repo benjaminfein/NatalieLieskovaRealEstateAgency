@@ -21,7 +21,8 @@ public class HouseAndTownhouseMapper {
                 houseAndTownhouse.getCeilingHeight(),
                 houseAndTownhouse.getPropertyCondition(),
                 houseAndTownhouse.getHeating(),
-                houseAndTownhouse.getPropertyDescription()
+                houseAndTownhouse.getPropertyDescription(),
+                houseAndTownhouse.getPhotoUrls()
         );
     }
 
@@ -42,7 +43,8 @@ public class HouseAndTownhouseMapper {
                 houseAndTownhouseDTO.getCeilingHeight(),
                 houseAndTownhouseDTO.getPropertyCondition(),
                 houseAndTownhouseDTO.getHeating(),
-                houseAndTownhouseDTO.getPropertyDescription()
+                houseAndTownhouseDTO.getPropertyDescription(),
+                houseAndTownhouseDTO.getPhotoUrls()
         );
     }
 }

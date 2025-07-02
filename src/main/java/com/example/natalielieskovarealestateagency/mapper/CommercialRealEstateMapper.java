@@ -13,13 +13,15 @@ public class CommercialRealEstateMapper {
                 entity.getMicroDistrict(),
                 entity.getAddress(),
                 entity.getPrice(),
+                entity.getCountOfRooms(),
                 complexName,
                 entity.getTotalArea(),
                 entity.getFloor(),
                 entity.getNumberOfStoreys(),
                 entity.getCeilingHeight(),
                 entity.getPropertyCondition(),
-                entity.getPropertyDescription()
+                entity.getPropertyDescription(),
+                entity.getPhotoUrls()
         );
     }
 
@@ -30,13 +32,15 @@ public class CommercialRealEstateMapper {
                 dto.getMicroDistrict(),
                 dto.getAddress(),
                 dto.getPrice(),
+                dto.getCountOfRooms(),
                 complex,
                 dto.getTotalArea(),
                 dto.getFloor(),
                 dto.getNumberOfStoreys(),
                 dto.getCeilingHeight(),
                 dto.getPropertyCondition(),
-                dto.getPropertyDescription()
+                dto.getPropertyDescription(),
+                dto.getPhotoUrls()
         );
     }
 }
