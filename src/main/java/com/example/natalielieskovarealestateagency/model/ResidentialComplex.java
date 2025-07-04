@@ -22,7 +22,7 @@ public class ResidentialComplex {
     @Column(name = "district")
     private String district;
     @Column(name = "price")
-    private Integer price;
+    private String price;
     @Column(name = "developer")
     private String developer;
     @Column(name = "promotion")
@@ -36,7 +36,7 @@ public class ResidentialComplex {
     @Column(name = "photo_url")
     private List<String> photoUrls;
 
-    public ResidentialComplex(Long id, String name, String district, Integer price,
+    public ResidentialComplex(Long id, String name, String district, String price,
                               String developer, String promotion, Boolean completedOrNot) {
         this.id = id;
         this.name = name;

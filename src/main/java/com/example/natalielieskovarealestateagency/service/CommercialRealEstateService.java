@@ -1,6 +1,8 @@
 package com.example.natalielieskovarealestateagency.service;
 
 import com.example.natalielieskovarealestateagency.dto.CommercialRealEstateDTO;
+import com.example.natalielieskovarealestateagency.model.PagedResponse;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -9,7 +11,7 @@ public interface CommercialRealEstateService {
 
     CommercialRealEstateDTO findCommercialRealEstateById(Long id);
 
-    List<CommercialRealEstateDTO> findAllCommercialRealEstate();
+    PagedResponse<CommercialRealEstateDTO> findAllCommercialRealEstate(Pageable pageable);
 
     CommercialRealEstateDTO updateCommercialRealEstate(Long id, CommercialRealEstateDTO dto);
 

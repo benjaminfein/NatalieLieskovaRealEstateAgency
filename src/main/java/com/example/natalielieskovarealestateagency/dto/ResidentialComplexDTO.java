@@ -13,7 +13,7 @@ public class ResidentialComplexDTO {
     private Long id;
     private String name;
     private String district;
-    private Integer price;
+    private String price;
     private String developer;
     private String promotion;
     private Boolean completedOrNot;

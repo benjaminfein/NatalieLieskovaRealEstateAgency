@@ -1,12 +1,18 @@
 package com.example.natalielieskovarealestateagency.service.impl;
 
+import com.example.natalielieskovarealestateagency.dto.HouseAndTownhouseDTO;
 import com.example.natalielieskovarealestateagency.dto.ResidentialComplexDTO;
 import com.example.natalielieskovarealestateagency.exception.ResidentialComplexNotFoundException;
+import com.example.natalielieskovarealestateagency.mapper.HouseAndTownhouseMapper;
 import com.example.natalielieskovarealestateagency.mapper.ResidentialComplexMapper;
+import com.example.natalielieskovarealestateagency.model.HouseAndTownhouse;
+import com.example.natalielieskovarealestateagency.model.PagedResponse;
 import com.example.natalielieskovarealestateagency.model.ResidentialComplex;
 import com.example.natalielieskovarealestateagency.repository.ResidentialComplexRepository;
 import com.example.natalielieskovarealestateagency.service.ResidentialComplexService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,10 +39,20 @@ public class ResidentialComplexServiceImpl implements ResidentialComplexService 
     }
 
     @Override
-    public List<ResidentialComplexDTO> getAllResidentialComplex() {
-        List<ResidentialComplex> residentialComplexList = residentialComplexRepository.findAll();
-        return residentialComplexList.stream().map(ResidentialComplexMapper::maptoResidentialComplexDTO)
-                .collect(Collectors.toList());
+    public PagedResponse<ResidentialComplexDTO> getAllResidentialComplexes(Pageable pageable) {
+        Page<ResidentialComplex> residentialComplexPage = residentialComplexRepository.findAll(pageable);
+
+        List<ResidentialComplexDTO> dtoList = residentialComplexPage.getContent()
+                .stream()
+                .map(ResidentialComplexMapper::maptoResidentialComplexDTO)
+                .toList();
+
+        return new PagedResponse<>(
+                dtoList,
+                residentialComplexPage.getNumber(),
+                residentialComplexPage.getSize(),
+                residentialComplexPage.getTotalElements()
+        );
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.example.natalielieskovarealestateagency.service;
 
 import com.example.natalielieskovarealestateagency.dto.HouseAndTownhouseDTO;
+import com.example.natalielieskovarealestateagency.model.PagedResponse;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -9,7 +11,7 @@ public interface HouseAndTownhouseService {
 
     HouseAndTownhouseDTO getHouseAndTownhouseById(Long id);
 
-    List<HouseAndTownhouseDTO> getAllHouseAndTownhouse();
+    PagedResponse<HouseAndTownhouseDTO> getAllHouseAndTownhouse(Pageable pageable);
 
     HouseAndTownhouseDTO updateHouseAndTownhouse(Long id, HouseAndTownhouseDTO houseAndTownhouseDTO);
 

@@ -2,9 +2,12 @@ package com.example.natalielieskovarealestateagency.controller;
 
 import com.example.natalielieskovarealestateagency.dto.ApartmentCardDTO;
 import com.example.natalielieskovarealestateagency.dto.ApartmentDTO;
+import com.example.natalielieskovarealestateagency.model.PagedResponse;
 import com.example.natalielieskovarealestateagency.service.ApartmentService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -38,10 +41,15 @@ public class ApartmentController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ApartmentDTO>> getAllApartments() {
-        List<ApartmentDTO> apartments = apartmentService.getAllApartment();
-        return ResponseEntity.ok(apartments);
+    public ResponseEntity<PagedResponse<ApartmentDTO>> getAllApartments(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
+    ) {
+        Pageable pageable = PageRequest.of(page, size);
+        PagedResponse<ApartmentDTO> response = apartmentService.getAllApartments(pageable);
+        return ResponseEntity.ok(response);
     }
+
 
     @GetMapping("/cards")
     public ResponseEntity<List<ApartmentCardDTO>> getAllApartmentCards() {

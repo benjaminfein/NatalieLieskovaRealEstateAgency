@@ -1,15 +1,21 @@
 package com.example.natalielieskovarealestateagency.service.impl;
 
+import com.example.natalielieskovarealestateagency.dto.ApartmentDTO;
 import com.example.natalielieskovarealestateagency.dto.CommercialRealEstateDTO;
 import com.example.natalielieskovarealestateagency.exception.CommercialRealEstateNotFoundException;
 import com.example.natalielieskovarealestateagency.exception.ResidentialComplexNotFoundException;
+import com.example.natalielieskovarealestateagency.mapper.ApartmentMapper;
 import com.example.natalielieskovarealestateagency.mapper.CommercialRealEstateMapper;
+import com.example.natalielieskovarealestateagency.model.Apartment;
 import com.example.natalielieskovarealestateagency.model.CommercialRealEstate;
+import com.example.natalielieskovarealestateagency.model.PagedResponse;
 import com.example.natalielieskovarealestateagency.model.ResidentialComplex;
 import com.example.natalielieskovarealestateagency.repository.CommercialRealEstateRepository;
 import com.example.natalielieskovarealestateagency.repository.ResidentialComplexRepository;
 import com.example.natalielieskovarealestateagency.service.CommercialRealEstateService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -42,10 +48,20 @@ public class CommercialRealEstateServiceImpl implements CommercialRealEstateServ
     }
 
     @Override
-    public List<CommercialRealEstateDTO> findAllCommercialRealEstate() {
-        return commercialRealEstateRepository.findAll().stream()
+    public PagedResponse<CommercialRealEstateDTO> findAllCommercialRealEstate(Pageable pageable) {
+        Page<CommercialRealEstate> commercialPage = commercialRealEstateRepository.findAll(pageable);
+
+        List<CommercialRealEstateDTO> dtoList = commercialPage.getContent()
+                .stream()
                 .map(CommercialRealEstateMapper::toDTO)
-                .collect(Collectors.toList());
+                .toList();
+
+        return new PagedResponse<>(
+                dtoList,
+                commercialPage.getNumber(),
+                commercialPage.getSize(),
+                commercialPage.getTotalElements()
+        );
     }
 
     @Override

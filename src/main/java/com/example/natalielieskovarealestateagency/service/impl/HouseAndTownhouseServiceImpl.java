@@ -1,12 +1,18 @@
 package com.example.natalielieskovarealestateagency.service.impl;
 
+import com.example.natalielieskovarealestateagency.dto.ApartmentDTO;
 import com.example.natalielieskovarealestateagency.dto.HouseAndTownhouseDTO;
 import com.example.natalielieskovarealestateagency.exception.HouseAndTownhouseNotFoundException;
+import com.example.natalielieskovarealestateagency.mapper.ApartmentMapper;
 import com.example.natalielieskovarealestateagency.mapper.HouseAndTownhouseMapper;
+import com.example.natalielieskovarealestateagency.model.Apartment;
 import com.example.natalielieskovarealestateagency.model.HouseAndTownhouse;
+import com.example.natalielieskovarealestateagency.model.PagedResponse;
 import com.example.natalielieskovarealestateagency.repository.HouseAndTownhouseRepository;
 import com.example.natalielieskovarealestateagency.service.HouseAndTownhouseService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,10 +39,20 @@ public class HouseAndTownhouseServiceImpl implements HouseAndTownhouseService {
     }
 
     @Override
-    public List<HouseAndTownhouseDTO> getAllHouseAndTownhouse() {
-        List<HouseAndTownhouse> houseAndTownhouseList = houseAndTownhouseRepository.findAll();
-        return houseAndTownhouseList.stream().map(HouseAndTownhouseMapper::maptoHouseAndTownhouseDTO)
-                .collect(Collectors.toList());
+    public PagedResponse<HouseAndTownhouseDTO> getAllHouseAndTownhouse(Pageable pageable) {
+        Page<HouseAndTownhouse> houseAndTownhousePage = houseAndTownhouseRepository.findAll(pageable);
+
+        List<HouseAndTownhouseDTO> dtoList = houseAndTownhousePage.getContent()
+                .stream()
+                .map(HouseAndTownhouseMapper::maptoHouseAndTownhouseDTO)
+                .toList();
+
+        return new PagedResponse<>(
+                dtoList,
+                houseAndTownhousePage.getNumber(),
+                houseAndTownhousePage.getSize(),
+                houseAndTownhousePage.getTotalElements()
+        );
     }
 
     @Override

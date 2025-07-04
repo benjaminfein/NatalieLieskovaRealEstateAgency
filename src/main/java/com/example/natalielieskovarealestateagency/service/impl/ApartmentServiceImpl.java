@@ -6,11 +6,14 @@ import com.example.natalielieskovarealestateagency.exception.ApartmentNotFoundEx
 import com.example.natalielieskovarealestateagency.exception.ResidentialComplexNotFoundException;
 import com.example.natalielieskovarealestateagency.mapper.ApartmentMapper;
 import com.example.natalielieskovarealestateagency.model.Apartment;
+import com.example.natalielieskovarealestateagency.model.PagedResponse;
 import com.example.natalielieskovarealestateagency.model.ResidentialComplex;
 import com.example.natalielieskovarealestateagency.repository.ApartmentRepository;
 import com.example.natalielieskovarealestateagency.repository.ResidentialComplexRepository;
 import com.example.natalielieskovarealestateagency.service.ApartmentService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -48,10 +51,20 @@ public class ApartmentServiceImpl implements ApartmentService {
     }
 
     @Override
-    public List<ApartmentDTO> getAllApartment() {
-        List<Apartment> apartmentList = apartmentRepository.findAll();
-        return apartmentList.stream().map(ApartmentMapper::maptoApartmentDTO)
-                .collect(Collectors.toList());
+    public PagedResponse<ApartmentDTO> getAllApartments(Pageable pageable) {
+        Page<Apartment> apartmentPage = apartmentRepository.findAll(pageable);
+
+        List<ApartmentDTO> dtoList = apartmentPage.getContent()
+                .stream()
+                .map(ApartmentMapper::maptoApartmentDTO)
+                .toList();
+
+        return new PagedResponse<>(
+                dtoList,
+                apartmentPage.getNumber(),
+                apartmentPage.getSize(),
+                apartmentPage.getTotalElements()
+        );
     }
 
     @Override

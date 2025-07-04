@@ -1,9 +1,12 @@
 package com.example.natalielieskovarealestateagency.controller;
 
 import com.example.natalielieskovarealestateagency.dto.CommercialRealEstateDTO;
+import com.example.natalielieskovarealestateagency.model.PagedResponse;
 import com.example.natalielieskovarealestateagency.service.CommercialRealEstateService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,28 +22,33 @@ public class CommercialRealEstateController {
     private final CommercialRealEstateService commercialRealEstateService;
 
     @PostMapping
-    public ResponseEntity<CommercialRealEstateDTO> create(@RequestBody CommercialRealEstateDTO dto) {
+    public ResponseEntity<CommercialRealEstateDTO> createCommercial(@RequestBody CommercialRealEstateDTO dto) {
         return new ResponseEntity<>(commercialRealEstateService.createCommercialRealEstate(dto), HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CommercialRealEstateDTO> getById(@PathVariable Long id) {
+    public ResponseEntity<CommercialRealEstateDTO> getCommercialById(@PathVariable Long id) {
         return ResponseEntity.ok(commercialRealEstateService.findCommercialRealEstateById(id));
     }
 
     @GetMapping
-    public ResponseEntity<List<CommercialRealEstateDTO>> getAll() {
-        return ResponseEntity.ok(commercialRealEstateService.findAllCommercialRealEstate());
+    public ResponseEntity<PagedResponse<CommercialRealEstateDTO>> getAllCommercials(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
+    ) {
+        Pageable pageable = PageRequest.of(page, size);
+        PagedResponse<CommercialRealEstateDTO> response = commercialRealEstateService.findAllCommercialRealEstate(pageable);
+        return ResponseEntity.ok(response);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CommercialRealEstateDTO> update(@PathVariable Long id,
+    public ResponseEntity<CommercialRealEstateDTO> updateCommercial(@PathVariable Long id,
                                                           @RequestBody CommercialRealEstateDTO dto) {
         return ResponseEntity.ok(commercialRealEstateService.updateCommercialRealEstate(id, dto));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> delete(@PathVariable Long id) {
+    public ResponseEntity<String> deleteCommercial(@PathVariable Long id) {
         commercialRealEstateService.deleteCommercialRealEstate(id);
         return ResponseEntity.ok("Commercial real estate deleted successfully!");
     }
