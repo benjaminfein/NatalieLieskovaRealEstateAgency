@@ -3,6 +3,7 @@ package com.example.natalielieskovarealestateagency.controller;
 import com.example.natalielieskovarealestateagency.dto.ApartmentCardDTO;
 import com.example.natalielieskovarealestateagency.dto.ApartmentDTO;
 import com.example.natalielieskovarealestateagency.service.ApartmentService;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/api/apartment")
+@AllArgsConstructor
 public class ApartmentController {
     private ApartmentService apartmentService;
 

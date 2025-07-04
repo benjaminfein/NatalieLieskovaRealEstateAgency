@@ -37,6 +37,8 @@ public class CommercialRealEstate {
     private Integer ceilingHeight;
     @Column(name = "propertyCondition")
     private String propertyCondition;
+    @Column(name = "ownerPhoneNumber")
+    private String ownerPhoneNumber;
     @Column(name = "propertyDescription")
     private String propertyDescription;
     @ElementCollection(fetch = FetchType.EAGER)

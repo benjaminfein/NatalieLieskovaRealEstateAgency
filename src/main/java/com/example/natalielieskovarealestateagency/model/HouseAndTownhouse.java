@@ -44,6 +44,8 @@ public class HouseAndTownhouse {
     private String propertyCondition;
     @Column(name = "heating")
     private String heating;
+    @Column(name = "ownerPhoneNumber")
+    private String ownerPhoneNumber;
     @Column(name = "propertyDescription")
     private String propertyDescription;
     @ElementCollection(fetch = FetchType.EAGER)

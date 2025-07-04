@@ -20,6 +20,7 @@ public class CommercialRealEstateMapper {
                 entity.getNumberOfStoreys(),
                 entity.getCeilingHeight(),
                 entity.getPropertyCondition(),
+                entity.getOwnerPhoneNumber(),
                 entity.getPropertyDescription(),
                 entity.getPhotoUrls()
         );
@@ -39,6 +40,7 @@ public class CommercialRealEstateMapper {
                 dto.getNumberOfStoreys(),
                 dto.getCeilingHeight(),
                 dto.getPropertyCondition(),
+                dto.getOwnerPhoneNumber(),
                 dto.getPropertyDescription(),
                 dto.getPhotoUrls()
         );

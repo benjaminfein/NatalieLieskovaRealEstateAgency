@@ -22,6 +22,7 @@ public class ApartmentMapper {
                 apartment.getCeilingHeight(),
                 apartment.getPropertyCondition(),
                 apartment.getHeating(),
+                apartment.getOwnerPhoneNumber(),
                 apartment.getPropertyDescription(),
                 apartment.getPhotoUrls()
         );
@@ -43,6 +44,7 @@ public class ApartmentMapper {
                 apartmentDTO.getCeilingHeight(),
                 apartmentDTO.getPropertyCondition(),
                 apartmentDTO.getHeating(),
+                apartmentDTO.getOwnerPhoneNumber(),
                 apartmentDTO.getPropertyDescription(),
                 apartmentDTO.getPhotoUrls()
         );

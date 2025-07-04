@@ -49,18 +49,20 @@ public class CommercialRealEstateServiceImpl implements CommercialRealEstateServ
     }
 
     @Override
-    public CommercialRealEstateDTO updateCommercialRealEstate(Long id, CommercialRealEstateDTO dto) {
+    public CommercialRealEstateDTO updateCommercialRealEstate(Long id, CommercialRealEstateDTO commercialRealEstateDTO) {
         CommercialRealEstate existing = commercialRealEstateRepository.findById(id)
                 .orElseThrow(() -> new CommercialRealEstateNotFoundException("Не найден объект с id: " + id));
 
         ResidentialComplex complex = null;
-        if (dto.getResidentialComplexName() != null && !dto.getResidentialComplexName().isBlank()) {
-            complex = residentialComplexRepository.findByName(dto.getResidentialComplexName())
+        if (commercialRealEstateDTO.getResidentialComplexName() != null && !commercialRealEstateDTO
+                .getResidentialComplexName()
+                .isBlank()) {
+            complex = residentialComplexRepository.findByName(commercialRealEstateDTO.getResidentialComplexName())
                     .orElseThrow(() -> new ResidentialComplexNotFoundException("ЖК не найден"));
         }
 
-        CommercialRealEstate updated = CommercialRealEstateMapper.toEntity(dto, complex);
-        updated.setId(id); // сохранить ID
+        CommercialRealEstate updated = CommercialRealEstateMapper.toEntity(commercialRealEstateDTO, complex);
+        updated.setId(id);
         return CommercialRealEstateMapper.toDTO(commercialRealEstateRepository.save(updated));
     }
 

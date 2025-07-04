@@ -25,6 +25,7 @@ public class HouseAndTownhouseDTO {
     private Integer ceilingHeight;
     private String propertyCondition;
     private String heating;
+    private String ownerPhoneNumber;
     private String propertyDescription;
     private List<String> photoUrls;
 }

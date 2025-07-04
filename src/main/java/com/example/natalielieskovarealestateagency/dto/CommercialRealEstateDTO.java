@@ -21,6 +21,7 @@ public class CommercialRealEstateDTO {
     private Integer numberOfStoreys;
     private Integer ceilingHeight;
     private String propertyCondition;
+    private String ownerPhoneNumber;
     private String propertyDescription;
     private List<String> photoUrls;
 }

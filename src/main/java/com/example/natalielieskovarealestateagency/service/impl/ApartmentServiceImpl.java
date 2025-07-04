@@ -81,6 +81,7 @@ public class ApartmentServiceImpl implements ApartmentService {
         updatedApartment.setCeilingHeight(apartmentToUpdate.getCeilingHeight());
         updatedApartment.setPropertyCondition(apartmentToUpdate.getPropertyCondition());
         updatedApartment.setHeating(apartmentToUpdate.getHeating());
+        updatedApartment.setOwnerPhoneNumber(apartmentToUpdate.getOwnerPhoneNumber());
         updatedApartment.setPropertyDescription(apartmentToUpdate.getPropertyDescription());
         Apartment saved = apartmentRepository.save(updatedApartment);
         return ApartmentMapper.maptoApartmentDTO(saved);
