@@ -22,7 +22,7 @@ public class HouseAndTownhouseDTO {
     private Float kitchenArea;
     private Integer floor;
     private Integer numberOfStoreys;
-    private Integer ceilingHeight;
+    private String ceilingHeight;
     private String propertyCondition;
     private String heating;
     private String ownerPhoneNumber;

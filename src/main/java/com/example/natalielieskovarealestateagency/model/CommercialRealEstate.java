@@ -34,7 +34,7 @@ public class CommercialRealEstate {
     @Column(name = "numberOfStoreys")
     private Integer numberOfStoreys;
     @Column(name = "ceilingHeight")
-    private Integer ceilingHeight;
+    private String ceilingHeight;
     @Column(name = "propertyCondition")
     private String propertyCondition;
     @Column(name = "ownerPhoneNumber")

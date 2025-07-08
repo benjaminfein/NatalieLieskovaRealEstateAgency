@@ -19,7 +19,7 @@ public class CommercialRealEstateDTO {
     private Float totalArea;
     private Integer floor;
     private Integer numberOfStoreys;
-    private Integer ceilingHeight;
+    private String ceilingHeight;
     private String propertyCondition;
     private String ownerPhoneNumber;
     private String propertyDescription;
