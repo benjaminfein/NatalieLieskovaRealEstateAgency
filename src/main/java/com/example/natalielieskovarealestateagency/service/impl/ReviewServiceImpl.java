@@ -51,4 +51,12 @@ public class ReviewServiceImpl implements ReviewService {
         Review savedReview = reviewRepository.save(review);
         return ReviewMapper.maptoReviewDTO(savedReview);
     }
+
+    @Override
+    public void deleteReviewById(Long id) {
+        Review review = reviewRepository.findById(id).orElseThrow(
+                () -> new ApartmentNotFoundException("Review is not exist with given id: " + id)
+        );
+        reviewRepository.deleteById(id);
+    }
 }

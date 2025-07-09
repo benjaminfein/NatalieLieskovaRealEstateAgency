@@ -37,4 +37,10 @@ public class ReviewController {
         ReviewDTO savedReview = reviewService.createReview(reviewDTO);
         return new ResponseEntity<>(savedReview, HttpStatus.CREATED);
     }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteReview(@PathVariable Long id) {
+        reviewService.deleteReviewById(id);
+        return ResponseEntity.ok("Review deleted successfully.");
+    }
 }
