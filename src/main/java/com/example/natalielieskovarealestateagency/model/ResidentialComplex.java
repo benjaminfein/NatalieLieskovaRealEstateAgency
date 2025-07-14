@@ -25,8 +25,40 @@ public class ResidentialComplex {
     private String price;
     @Column(name = "developer")
     private String developer;
-    @Column(name = "promotion")
-    private String promotion;
+    @Column(name = "promotionHeader")
+    private String promotionHeader;
+    @Column(name = "promotionText")
+    private String promotionText;
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "min", column = @Column(name = "one_room_min")),
+            @AttributeOverride(name = "max", column = @Column(name = "one_room_max"))
+    })
+    private AreaRange oneRoom;
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "min", column = @Column(name = "two_room_min")),
+            @AttributeOverride(name = "max", column = @Column(name = "two_room_max"))
+    })
+    private AreaRange twoRoom;
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "min", column = @Column(name = "three_room_min")),
+            @AttributeOverride(name = "max", column = @Column(name = "three_room_max"))
+    })
+    private AreaRange threeRoom;
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "min", column = @Column(name = "four_room_min")),
+            @AttributeOverride(name = "max", column = @Column(name = "four_room_max"))
+    })
+    private AreaRange fourRoom;
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "min", column = @Column(name = "five_room_min")),
+            @AttributeOverride(name = "max", column = @Column(name = "five_room_max"))
+    })
+    private AreaRange fiveRoom;
     @Column(name = "completedOrNot")
     private Boolean completedOrNot;
     @OneToMany(mappedBy = "residentialComplex", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -37,13 +69,21 @@ public class ResidentialComplex {
     private List<String> photoUrls;
 
     public ResidentialComplex(Long id, String name, String district, String price,
-                              String developer, String promotion, Boolean completedOrNot) {
+                              String developer, String promotionHeader, String promotionText, AreaRange oneRoom,
+                              AreaRange twoRoom, AreaRange threeRoom, AreaRange fourRoom, AreaRange fiveRoom,
+                              Boolean completedOrNot) {
         this.id = id;
         this.name = name;
         this.district = district;
         this.price = price;
         this.developer = developer;
-        this.promotion = promotion;
+        this.promotionHeader = promotionHeader;
+        this.promotionText = promotionText;
+        this.oneRoom = oneRoom;
+        this.twoRoom = twoRoom;
+        this.threeRoom = threeRoom;
+        this.fourRoom = fourRoom;
+        this.fiveRoom = fiveRoom;
         this.completedOrNot = completedOrNot;
         this.apartments = new ArrayList<>();
     }

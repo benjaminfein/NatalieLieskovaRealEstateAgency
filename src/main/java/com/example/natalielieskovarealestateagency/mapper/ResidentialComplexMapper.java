@@ -1,7 +1,9 @@
 package com.example.natalielieskovarealestateagency.mapper;
 
 import com.example.natalielieskovarealestateagency.dto.ApartmentCardDTO;
+import com.example.natalielieskovarealestateagency.dto.AreaRangeDTO;
 import com.example.natalielieskovarealestateagency.dto.ResidentialComplexDTO;
+import com.example.natalielieskovarealestateagency.model.AreaRange;
 import com.example.natalielieskovarealestateagency.model.ResidentialComplex;
 
 import java.util.List;
@@ -20,8 +22,14 @@ public class ResidentialComplexMapper {
                 residentialComplex.getDistrict(),
                 residentialComplex.getPrice(),
                 residentialComplex.getDeveloper(),
-                residentialComplex.getPromotion(),
+                residentialComplex.getPromotionHeader(),
+                residentialComplex.getPromotionText(),
                 residentialComplex.getCompletedOrNot(),
+                toAreaRangeDTO(residentialComplex.getOneRoom()),
+                toAreaRangeDTO(residentialComplex.getTwoRoom()),
+                toAreaRangeDTO(residentialComplex.getThreeRoom()),
+                toAreaRangeDTO(residentialComplex.getFourRoom()),
+                toAreaRangeDTO(residentialComplex.getFiveRoom()),
                 apartmentCards,
                 residentialComplex.getPhotoUrls()
         );
@@ -34,8 +42,24 @@ public class ResidentialComplexMapper {
                 residentialComplexDTO.getDistrict(),
                 residentialComplexDTO.getPrice(),
                 residentialComplexDTO.getDeveloper(),
-                residentialComplexDTO.getPromotion(),
+                residentialComplexDTO.getPromotionHeader(),
+                residentialComplexDTO.getPromotionText(),
+                toAreaRange(residentialComplexDTO.getOneRoom()),
+                toAreaRange(residentialComplexDTO.getTwoRoom()),
+                toAreaRange(residentialComplexDTO.getThreeRoom()),
+                toAreaRange(residentialComplexDTO.getFourRoom()),
+                toAreaRange(residentialComplexDTO.getFiveRoom()),
                 residentialComplexDTO.getCompletedOrNot()
         );
+    }
+
+    private static AreaRangeDTO toAreaRangeDTO(AreaRange areaRange) {
+        if (areaRange == null) return null;
+        return new AreaRangeDTO(areaRange.getMin(), areaRange.getMax());
+    }
+
+    private static AreaRange toAreaRange(AreaRangeDTO areaRangeDTO) {
+        if (areaRangeDTO == null) return null;
+        return new AreaRange(areaRangeDTO.getMin(), areaRangeDTO.getMax());
     }
 }

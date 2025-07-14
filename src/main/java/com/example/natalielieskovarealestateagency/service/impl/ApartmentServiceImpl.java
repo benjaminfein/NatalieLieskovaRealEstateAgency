@@ -11,6 +11,7 @@ import com.example.natalielieskovarealestateagency.model.ResidentialComplex;
 import com.example.natalielieskovarealestateagency.repository.ApartmentRepository;
 import com.example.natalielieskovarealestateagency.repository.ResidentialComplexRepository;
 import com.example.natalielieskovarealestateagency.service.ApartmentService;
+import com.example.natalielieskovarealestateagency.service.ResidentialComplexService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,6 +25,7 @@ import java.util.stream.Collectors;
 public class ApartmentServiceImpl implements ApartmentService {
     private ApartmentRepository apartmentRepository;
     private ResidentialComplexRepository residentialComplexRepository;
+    private ResidentialComplexService residentialComplexService;
 
     @Override
     public ApartmentDTO createApartment(ApartmentDTO apartmentDTO) {
@@ -32,6 +34,7 @@ public class ApartmentServiceImpl implements ApartmentService {
 
         Apartment apartment = ApartmentMapper.maptoApartment(apartmentDTO, complex);
         Apartment savedApartment = apartmentRepository.save(apartment);
+        residentialComplexService.updateAreaRanges(apartment.getResidentialComplex());
         return ApartmentMapper.maptoApartmentDTO(savedApartment);
     }
 
@@ -85,7 +88,6 @@ public class ApartmentServiceImpl implements ApartmentService {
         updatedApartment.setAddress(apartmentToUpdate.getAddress());
         updatedApartment.setPrice(apartmentToUpdate.getPrice());
         updatedApartment.setCountOfRooms(apartmentToUpdate.getCountOfRooms());
-        updatedApartment.setResidentialComplex(complex);
         updatedApartment.setTotalArea(apartmentToUpdate.getTotalArea());
         updatedApartment.setLivingArea(apartmentToUpdate.getLivingArea());
         updatedApartment.setKitchenArea(apartmentToUpdate.getKitchenArea());
@@ -96,7 +98,17 @@ public class ApartmentServiceImpl implements ApartmentService {
         updatedApartment.setHeating(apartmentToUpdate.getHeating());
         updatedApartment.setOwnerPhoneNumber(apartmentToUpdate.getOwnerPhoneNumber());
         updatedApartment.setPropertyDescription(apartmentToUpdate.getPropertyDescription());
+
+        ResidentialComplex oldComplex = updatedApartment.getResidentialComplex();
+        updatedApartment.setResidentialComplex(complex);
+
         Apartment saved = apartmentRepository.save(updatedApartment);
+
+        residentialComplexService.updateAreaRanges(oldComplex);
+        if (!oldComplex.getId().equals(complex.getId())) {
+            residentialComplexService.updateAreaRanges(complex);
+        }
+
         return ApartmentMapper.maptoApartmentDTO(saved);
     }
 
@@ -106,6 +118,7 @@ public class ApartmentServiceImpl implements ApartmentService {
                 () -> new ApartmentNotFoundException("Apartment is not exist with given id: " + id)
         );
         apartmentRepository.deleteById(id);
+        residentialComplexService.updateAreaRanges(apartment.getResidentialComplex());
     }
 
     @Override
