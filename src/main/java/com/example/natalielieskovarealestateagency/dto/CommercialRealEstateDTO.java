@@ -16,6 +16,7 @@ public class CommercialRealEstateDTO {
     private Integer price;
     private Integer countOfRooms;
     private String residentialComplexName;
+    private Long residentialId;
     private Float totalArea;
     private Integer floor;
     private Integer numberOfStoreys;
@@ -23,5 +24,6 @@ public class CommercialRealEstateDTO {
     private String propertyCondition;
     private String ownerPhoneNumber;
     private String propertyDescription;
+    private String adminCreator;
     private List<String> photoUrls;
 }

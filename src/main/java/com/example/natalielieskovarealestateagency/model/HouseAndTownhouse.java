@@ -48,6 +48,8 @@ public class HouseAndTownhouse {
     private String ownerPhoneNumber;
     @Column(name = "propertyDescription")
     private String propertyDescription;
+    @Column(name = "adminCreator")
+    private String adminCreator;
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "house_and_townhouse_photos", joinColumns = @JoinColumn(name = "house_and_townhouse_id"))
     @Column(name = "photo_url")

@@ -47,8 +47,23 @@ public class Apartment {
     private String ownerPhoneNumber;
     @Column(name = "propertyDescription")
     private String propertyDescription;
+    @Column(name = "adminCreator")
+    private String adminCreator;
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "apartment_photos", joinColumns = @JoinColumn(name = "apartment_id"))
     @Column(name = "photo_url")
     private List<String> photoUrls;
+
+    public Apartment(Long id, String address, Integer price, Integer countOfRooms, Float totalArea,
+                     Float livingArea, Float kitchenArea, String adminCreator, List<String> photoUrls) {
+        this.id = id;
+        this.address = address;
+        this.price = price;
+        this.countOfRooms = countOfRooms;
+        this.totalArea = totalArea;
+        this.livingArea = livingArea;
+        this.kitchenArea = kitchenArea;
+        this.adminCreator = adminCreator;
+        this.photoUrls = photoUrls;
+    }
 }

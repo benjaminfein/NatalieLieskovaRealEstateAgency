@@ -72,22 +72,19 @@ public class UserController {
         var response = new HashMap<String, Object>();
         response.put("Email", auth.getName());
 
-        // Ищем пользователя в базе данных
         var user = userRepository.findByEmail(auth.getName());
         if (user.isEmpty()) {
-            // Возвращаем ошибку, если пользователь не найден
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body("Bearer not valid!");
         }
 
-        // Если пользователь найден, добавляем его в ответ
         response.put("User", user);
 
         return ResponseEntity.ok(response);
     }
 
     @PostMapping("/register")
-    public ResponseEntity<Object> register(@Valid @RequestBody CreateUserDTO createUserDTO, BindingResult result, HttpServletResponse response) {
+    public ResponseEntity<Object> register(@Valid @RequestBody CreateUserDTO createUserDTO, BindingResult result) {
         if (result.hasErrors()) {
             var errorsList = result.getAllErrors();
             var errorsMap = new HashMap<String, String>();
@@ -138,7 +135,7 @@ public class UserController {
                     Map.of(
                             "link", confirmUrl,
                             "username", user.getUsername(),
-                            "lang", lang // <— передаємо в шаблон
+                            "lang", lang
                     )
             );
 

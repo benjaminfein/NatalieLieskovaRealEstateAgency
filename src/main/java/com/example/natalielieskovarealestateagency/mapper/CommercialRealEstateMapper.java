@@ -15,6 +15,7 @@ public class CommercialRealEstateMapper {
                 entity.getPrice(),
                 entity.getCountOfRooms(),
                 complexName,
+                entity.getResidentialComplex() != null ? entity.getResidentialComplex().getId() : null,
                 entity.getTotalArea(),
                 entity.getFloor(),
                 entity.getNumberOfStoreys(),
@@ -22,6 +23,7 @@ public class CommercialRealEstateMapper {
                 entity.getPropertyCondition(),
                 entity.getOwnerPhoneNumber(),
                 entity.getPropertyDescription(),
+                entity.getAdminCreator(),
                 entity.getPhotoUrls()
         );
     }
@@ -42,6 +44,7 @@ public class CommercialRealEstateMapper {
                 dto.getPropertyCondition(),
                 dto.getOwnerPhoneNumber(),
                 dto.getPropertyDescription(),
+                dto.getAdminCreator(),
                 dto.getPhotoUrls()
         );
     }

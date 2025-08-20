@@ -1,6 +1,5 @@
 package com.example.natalielieskovarealestateagency.controller;
 
-import com.example.natalielieskovarealestateagency.dto.CommercialRealEstateDTO;
 import com.example.natalielieskovarealestateagency.dto.HouseAndTownhouseDTO;
 import com.example.natalielieskovarealestateagency.model.PagedResponse;
 import com.example.natalielieskovarealestateagency.service.HouseAndTownhouseService;

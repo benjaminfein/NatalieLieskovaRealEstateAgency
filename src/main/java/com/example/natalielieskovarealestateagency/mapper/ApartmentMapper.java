@@ -10,20 +10,22 @@ public class ApartmentMapper {
         return new ApartmentDTO(
                 apartment.getId(),
                 apartment.getMicroDistrict(),
-                apartment.getAddress(),
+                apartment.getResidentialComplex() != null ? apartment.getResidentialComplex().getAddress() : null,
                 apartment.getPrice(),
                 apartment.getCountOfRooms(),
                 apartment.getResidentialComplex() != null ? apartment.getResidentialComplex().getName() : null,
+                apartment.getResidentialComplex() != null ? apartment.getResidentialComplex().getId() : null,
                 apartment.getTotalArea(),
                 apartment.getLivingArea(),
                 apartment.getKitchenArea(),
                 apartment.getFloor(),
-                apartment.getNumberOfStoreys(),
+                apartment.getResidentialComplex() != null ? apartment.getResidentialComplex().getNumberOfStoreys() : null,
                 apartment.getCeilingHeight(),
                 apartment.getPropertyCondition(),
                 apartment.getHeating(),
                 apartment.getOwnerPhoneNumber(),
                 apartment.getPropertyDescription(),
+                apartment.getAdminCreator(),
                 apartment.getPhotoUrls()
         );
     }
@@ -32,7 +34,7 @@ public class ApartmentMapper {
         return new Apartment(
                 apartmentDTO.getId(),
                 apartmentDTO.getMicroDistrict(),
-                apartmentDTO.getAddress(),
+                complex.getAddress(),
                 apartmentDTO.getPrice(),
                 apartmentDTO.getCountOfRooms(),
                 complex,
@@ -40,12 +42,13 @@ public class ApartmentMapper {
                 apartmentDTO.getLivingArea(),
                 apartmentDTO.getKitchenArea(),
                 apartmentDTO.getFloor(),
-                apartmentDTO.getNumberOfStoreys(),
+                complex.getNumberOfStoreys(),
                 apartmentDTO.getCeilingHeight(),
                 apartmentDTO.getPropertyCondition(),
                 apartmentDTO.getHeating(),
                 apartmentDTO.getOwnerPhoneNumber(),
                 apartmentDTO.getPropertyDescription(),
+                apartmentDTO.getAdminCreator(),
                 apartmentDTO.getPhotoUrls()
         );
     }
@@ -53,13 +56,28 @@ public class ApartmentMapper {
     public static ApartmentCardDTO mapToCardDTO(Apartment apartment) {
         return new ApartmentCardDTO(
                 apartment.getId(),
-                apartment.getAddress(),
+                apartment.getResidentialComplex() != null ? apartment.getResidentialComplex().getAddress() : null,
                 apartment.getPrice(),
                 apartment.getCountOfRooms(),
                 apartment.getTotalArea(),
                 apartment.getLivingArea(),
                 apartment.getKitchenArea(),
+                apartment.getAdminCreator(),
                 apartment.getPhotoUrls()
+        );
+    }
+
+    public static Apartment mapToApartmentFromCardDTO(ApartmentCardDTO apartmentCardDTO) {
+        return new Apartment(
+                apartmentCardDTO.getId(),
+                apartmentCardDTO.getAddress(),
+                apartmentCardDTO.getPrice(),
+                apartmentCardDTO.getCountOfRooms(),
+                apartmentCardDTO.getTotalArea(),
+                apartmentCardDTO.getLivingArea(),
+                apartmentCardDTO.getKitchenArea(),
+                apartmentCardDTO.getAdminCreator(),
+                apartmentCardDTO.getPhotoUrls()
         );
     }
 }

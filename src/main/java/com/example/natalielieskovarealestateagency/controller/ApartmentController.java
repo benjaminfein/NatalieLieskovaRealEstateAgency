@@ -34,7 +34,7 @@ public class ApartmentController {
         return ResponseEntity.ok(apartmentDTO);
     }
 
-    @GetMapping("{complexId}")
+    @GetMapping("/get-apartment-by-complex-id/{complexId}")
     public ResponseEntity<List<ApartmentCardDTO>> getApartmentsByComplex(@PathVariable Long complexId) {
         List<ApartmentCardDTO> apartmentCardDTOs = apartmentService.getApartmentsByComplex(complexId);
         return ResponseEntity.ok(apartmentCardDTOs);
@@ -59,7 +59,7 @@ public class ApartmentController {
 
     @PutMapping("{id}")
     public ResponseEntity<ApartmentDTO> updateApartment(@PathVariable("id") Long id,
-                                                                          @RequestBody ApartmentDTO apartmentToUpdate) {
+                                                        @RequestBody ApartmentDTO apartmentToUpdate) {
         ApartmentDTO apartmentDTO = apartmentService
                 .updateApartment(id, apartmentToUpdate);
         return ResponseEntity.ok(apartmentDTO);

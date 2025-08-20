@@ -27,5 +27,6 @@ public class HouseAndTownhouseDTO {
     private String heating;
     private String ownerPhoneNumber;
     private String propertyDescription;
+    private String adminCreator;
     private List<String> photoUrls;
 }

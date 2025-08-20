@@ -1,6 +1,7 @@
 package com.example.natalielieskovarealestateagency.service.impl;
 
 import com.example.natalielieskovarealestateagency.dto.ResidentialComplexDTO;
+import com.example.natalielieskovarealestateagency.dto.ResidentialComplexWithApartmentsDTO;
 import com.example.natalielieskovarealestateagency.exception.ResidentialComplexNotFoundException;
 import com.example.natalielieskovarealestateagency.mapper.ResidentialComplexMapper;
 import com.example.natalielieskovarealestateagency.model.Apartment;
@@ -28,6 +29,7 @@ public class ResidentialComplexServiceImpl implements ResidentialComplexService 
         List<Apartment> apartments = complex.getApartments();
 
         Map<Integer, List<Float>> grouped = apartments.stream()
+                .filter(a -> a.getTotalArea() != null)
                 .collect(Collectors.groupingBy(
                         Apartment::getCountOfRooms,
                         Collectors.mapping(Apartment::getTotalArea, Collectors.toList())
@@ -38,12 +40,21 @@ public class ResidentialComplexServiceImpl implements ResidentialComplexService 
         complex.setThreeRoom(getRange(grouped.get(3)));
         complex.setFourRoom(getRange(grouped.get(4)));
         complex.setFiveRoom(getRange(grouped.get(5)));
+
+        residentialComplexRepository.save(complex);
     }
 
     private AreaRange getRange(List<Float> areas) {
         if (areas == null || areas.isEmpty()) return null;
-        Float min = areas.stream().min(Float::compareTo).orElse(null);
-        Float max = areas.stream().max(Float::compareTo).orElse(null);
+        float min = Float.MAX_VALUE;
+        float max = Float.MIN_VALUE;
+
+        for (Float area : areas) {
+            if (area == null) continue;
+            if (area < min) min = area;
+            if (area > max) max = area;
+        }
+
         return new AreaRange(min, max);
     }
 
@@ -63,12 +74,37 @@ public class ResidentialComplexServiceImpl implements ResidentialComplexService 
     }
 
     @Override
-    public PagedResponse<ResidentialComplexDTO> getAllResidentialComplexes(Pageable pageable) {
-        Page<ResidentialComplex> residentialComplexPage = residentialComplexRepository.findAll(pageable);
+    public ResidentialComplexWithApartmentsDTO getResidentialComplexWithApartmentsById(Long id) {
+        ResidentialComplex residentialComplex = residentialComplexRepository.findById(id)
+                .orElseThrow(() -> new ResidentialComplexNotFoundException("Residential complex is not exist with given id" + id));
+
+        return ResidentialComplexMapper.mapToResidentialComplexWithApartmentsDTO(residentialComplex);
+    }
+
+    @Override
+    public PagedResponse<ResidentialComplexDTO> getAllResidentialComplexesWithoutApartments(Pageable pageable) {
+        Page<ResidentialComplex> residentialComplexPage = residentialComplexRepository.findAllWithApartments(pageable);
 
         List<ResidentialComplexDTO> dtoList = residentialComplexPage.getContent()
                 .stream()
                 .map(ResidentialComplexMapper::maptoResidentialComplexDTO)
+                .toList();
+
+        return new PagedResponse<>(
+                dtoList,
+                residentialComplexPage.getNumber(),
+                residentialComplexPage.getSize(),
+                residentialComplexPage.getTotalElements()
+        );
+    }
+
+    @Override
+    public PagedResponse<ResidentialComplexWithApartmentsDTO> getAllResidentialComplexesWithApartments(Pageable pageable) {
+        Page<ResidentialComplex> residentialComplexPage = residentialComplexRepository.findAllWithApartments(pageable);
+
+        List<ResidentialComplexWithApartmentsDTO> dtoList = residentialComplexPage.getContent()
+                .stream()
+                .map(ResidentialComplexMapper::mapToResidentialComplexWithApartmentsDTO)
                 .toList();
 
         return new PagedResponse<>(
@@ -87,9 +123,12 @@ public class ResidentialComplexServiceImpl implements ResidentialComplexService 
         residentialComplex.setDeveloper(residentialComplexToUpdate.getDeveloper());
         residentialComplex.setPrice(residentialComplexToUpdate.getPrice());
         residentialComplex.setDistrict(residentialComplexToUpdate.getDistrict());
+        residentialComplex.setAddress(residentialComplexToUpdate.getAddress());
         residentialComplex.setPromotionHeader(residentialComplexToUpdate.getPromotionHeader());
         residentialComplex.setPromotionText(residentialComplexToUpdate.getPromotionText());
         residentialComplex.setCompletedOrNot(residentialComplexToUpdate.getCompletedOrNot());
+        residentialComplex.setNumberOfStoreys(residentialComplexToUpdate.getNumberOfStoreys());
+        residentialComplex.setDescription(residentialComplexToUpdate.getDescription());
         ResidentialComplex updatedResidentialComplex = residentialComplexRepository.save(residentialComplex);
         return ResidentialComplexMapper.maptoResidentialComplexDTO(updatedResidentialComplex);
     }

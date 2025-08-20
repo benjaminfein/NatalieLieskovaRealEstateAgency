@@ -67,7 +67,7 @@ public class S3Controller {
     @PostMapping("/upload-commercial-multiple-files")
     public ResponseEntity<String> uploadCommercialRealEstateMultipleFiles(
             @RequestParam("files") List<MultipartFile> files,
-            @RequestParam("apartmentId") Long commercialRealEstateId) {
+            @RequestParam("commercialRealEstateId") Long commercialRealEstateId) {
         try {
             s3Service.uploadCommercialRealEstateFiles(files, commercialRealEstateId);
             return ResponseEntity.ok("Файлы успешно загружены и привязаны к коммерции.");
@@ -93,7 +93,7 @@ public class S3Controller {
     @PostMapping("/upload-house-and-townhouse-multiple-files")
     public ResponseEntity<String> uploadHouseAndTownhouseMultipleFiles(
             @RequestParam("files") List<MultipartFile> files,
-            @RequestParam("apartmentId") Long houseAndTownhouseId) {
+            @RequestParam("houseAndTownhouseId") Long houseAndTownhouseId) {
         try {
             s3Service.uploadHouseAndTownhouseFiles(files, houseAndTownhouseId);
             return ResponseEntity.ok("Файлы успешно загружены и привязаны к дому.");
@@ -119,7 +119,7 @@ public class S3Controller {
     @PostMapping("/upload-residential-complex-multiple-files")
     public ResponseEntity<String> uploadResidentialComplexMultipleFiles(
             @RequestParam("files") List<MultipartFile> files,
-            @RequestParam("apartmentId") Long residentialComplexId) {
+            @RequestParam("residentialComplexId") Long residentialComplexId) {
         try {
             s3Service.uploadResidentialComplexFiles(files, residentialComplexId);
             return ResponseEntity.ok("Файлы успешно загружены и привязаны к жилкомплексу.");

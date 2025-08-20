@@ -1,6 +1,7 @@
 package com.example.natalielieskovarealestateagency.service;
 
 import com.example.natalielieskovarealestateagency.dto.ResidentialComplexDTO;
+import com.example.natalielieskovarealestateagency.dto.ResidentialComplexWithApartmentsDTO;
 import com.example.natalielieskovarealestateagency.model.PagedResponse;
 import com.example.natalielieskovarealestateagency.model.ResidentialComplex;
 import org.springframework.data.domain.Pageable;
@@ -14,9 +15,13 @@ public interface ResidentialComplexService {
 
     ResidentialComplexDTO getResidentialComplexById(Long id);
 
-    PagedResponse<ResidentialComplexDTO> getAllResidentialComplexes(Pageable pageable);
+    ResidentialComplexWithApartmentsDTO getResidentialComplexWithApartmentsById(Long id);
+
+    PagedResponse<ResidentialComplexDTO> getAllResidentialComplexesWithoutApartments(Pageable pageable);
 
     ResidentialComplexDTO updateResidentialComplex(Long id, ResidentialComplexDTO residentialComplexDTO);
 
     void deleteResidentialComplex(Long id);
+
+    PagedResponse<ResidentialComplexWithApartmentsDTO> getAllResidentialComplexesWithApartments(Pageable pageable);
 }

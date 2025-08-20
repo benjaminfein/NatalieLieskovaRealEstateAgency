@@ -23,6 +23,7 @@ public class HouseAndTownhouseMapper {
                 houseAndTownhouse.getHeating(),
                 houseAndTownhouse.getOwnerPhoneNumber(),
                 houseAndTownhouse.getPropertyDescription(),
+                houseAndTownhouse.getAdminCreator(),
                 houseAndTownhouse.getPhotoUrls()
         );
     }
@@ -46,6 +47,7 @@ public class HouseAndTownhouseMapper {
                 houseAndTownhouseDTO.getHeating(),
                 houseAndTownhouseDTO.getOwnerPhoneNumber(),
                 houseAndTownhouseDTO.getPropertyDescription(),
+                houseAndTownhouseDTO.getAdminCreator(),
                 houseAndTownhouseDTO.getPhotoUrls()
         );
     }

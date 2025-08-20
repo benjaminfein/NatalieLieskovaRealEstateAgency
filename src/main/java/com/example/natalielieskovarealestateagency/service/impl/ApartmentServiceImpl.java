@@ -85,26 +85,30 @@ public class ApartmentServiceImpl implements ApartmentService {
                 .orElseThrow(() -> new ResidentialComplexNotFoundException("ЖК не найден"));
 
         updatedApartment.setMicroDistrict(apartmentToUpdate.getMicroDistrict());
-        updatedApartment.setAddress(apartmentToUpdate.getAddress());
+        updatedApartment.setAddress(complex.getAddress());
         updatedApartment.setPrice(apartmentToUpdate.getPrice());
         updatedApartment.setCountOfRooms(apartmentToUpdate.getCountOfRooms());
         updatedApartment.setTotalArea(apartmentToUpdate.getTotalArea());
         updatedApartment.setLivingArea(apartmentToUpdate.getLivingArea());
         updatedApartment.setKitchenArea(apartmentToUpdate.getKitchenArea());
         updatedApartment.setFloor(apartmentToUpdate.getFloor());
-        updatedApartment.setNumberOfStoreys(apartmentToUpdate.getNumberOfStoreys());
+        updatedApartment.setNumberOfStoreys(complex.getNumberOfStoreys());
         updatedApartment.setCeilingHeight(apartmentToUpdate.getCeilingHeight());
         updatedApartment.setPropertyCondition(apartmentToUpdate.getPropertyCondition());
         updatedApartment.setHeating(apartmentToUpdate.getHeating());
         updatedApartment.setOwnerPhoneNumber(apartmentToUpdate.getOwnerPhoneNumber());
         updatedApartment.setPropertyDescription(apartmentToUpdate.getPropertyDescription());
+        updatedApartment.setAdminCreator(apartmentToUpdate.getAdminCreator());
+        updatedApartment.setPhotoUrls(apartmentToUpdate.getPhotoUrls());
 
         ResidentialComplex oldComplex = updatedApartment.getResidentialComplex();
         updatedApartment.setResidentialComplex(complex);
 
         Apartment saved = apartmentRepository.save(updatedApartment);
 
-        residentialComplexService.updateAreaRanges(oldComplex);
+        if (updatedApartment.getResidentialComplex() != null) {
+            residentialComplexService.updateAreaRanges(updatedApartment.getResidentialComplex());
+        }
         if (!oldComplex.getId().equals(complex.getId())) {
             residentialComplexService.updateAreaRanges(complex);
         }
@@ -118,7 +122,9 @@ public class ApartmentServiceImpl implements ApartmentService {
                 () -> new ApartmentNotFoundException("Apartment is not exist with given id: " + id)
         );
         apartmentRepository.deleteById(id);
-        residentialComplexService.updateAreaRanges(apartment.getResidentialComplex());
+        if (apartment.getResidentialComplex() != null) {
+            residentialComplexService.updateAreaRanges(apartment.getResidentialComplex());
+        }
     }
 
     @Override

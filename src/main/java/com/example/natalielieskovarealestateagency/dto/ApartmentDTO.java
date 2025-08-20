@@ -16,6 +16,7 @@ public class ApartmentDTO {
     private Integer price;
     private Integer countOfRooms;
     private String nameOfResidentialComplex;
+    private Long residentialComplexId;
     private Float totalArea;
     private Float livingArea;
     private Float kitchenArea;
@@ -26,5 +27,6 @@ public class ApartmentDTO {
     private String heating;
     private String ownerPhoneNumber;
     private String propertyDescription;
+    private String adminCreator;
     private List<String> photoUrls;
 }

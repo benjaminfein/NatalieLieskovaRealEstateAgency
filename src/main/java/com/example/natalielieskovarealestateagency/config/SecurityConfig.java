@@ -53,17 +53,11 @@ public class SecurityConfig {
     }
 
     private static final String[] PUBLIC_ENDPOINTS = {
-            "/api/user/profile",
-            "/api/user/register",
             "/api/user/login",
             "/api/user/confirm",
-            "/api/user/profile",
-            "/api/user/delete/**",
-            "/api/user/allUsers",
             "/api/user/{id}",
             "/api/user/forgot-password",
             "/api/user/reset-password",
-            "/api/user/profile",
             "/api/residential-complex/**",
             "/api/house-and-townhouse/**",
             "/api/commercial/**",
@@ -71,7 +65,13 @@ public class SecurityConfig {
     };
 
     private static final String[] ADMIN_ENDPOINTS = {
+            "/api/user/profile",
+    };
 
+    private static final String[] OWNER_ENDPOINTS = {
+            "/api/user/allUsers",
+            "/api/user/register",
+            "/api/user/delete/**",
     };
 
     @Bean
@@ -84,9 +84,15 @@ public class SecurityConfig {
                     auth.requestMatchers(PUBLIC_ENDPOINTS).permitAll();
 
                     if (restrictAdminEndpoints) {
-                        auth.requestMatchers(ADMIN_ENDPOINTS).hasAuthority("admin");
+                        auth.requestMatchers(ADMIN_ENDPOINTS).hasAnyAuthority("admin", "owner");
                     } else {
                         auth.requestMatchers(ADMIN_ENDPOINTS).permitAll();
+                    }
+
+                    if (restrictAdminEndpoints) {
+                        auth.requestMatchers(OWNER_ENDPOINTS).hasAuthority("owner");
+                    } else {
+                        auth.requestMatchers(OWNER_ENDPOINTS).permitAll();
                     }
 
                     auth.anyRequest().permitAll();
@@ -111,9 +117,15 @@ public class SecurityConfig {
                     auth.requestMatchers(PUBLIC_ENDPOINTS).permitAll();
 
                     if (restrictAdminEndpoints) {
-                        auth.requestMatchers(ADMIN_ENDPOINTS).hasAuthority("admin");
+                        auth.requestMatchers(ADMIN_ENDPOINTS).hasAnyAuthority("admin", "owner");
                     } else {
                         auth.requestMatchers(ADMIN_ENDPOINTS).permitAll();
+                    }
+
+                    if (restrictAdminEndpoints) {
+                        auth.requestMatchers(OWNER_ENDPOINTS).hasAuthority("owner");
+                    } else {
+                        auth.requestMatchers(OWNER_ENDPOINTS).permitAll();
                     }
 
                     auth.anyRequest().permitAll();

@@ -17,5 +17,6 @@ public class ApartmentCardDTO {
     private Float totalArea;
     private Float livingArea;
     private Float kitchenArea;
+    private String adminCreator;
     private List<String> photoUrls;
 }

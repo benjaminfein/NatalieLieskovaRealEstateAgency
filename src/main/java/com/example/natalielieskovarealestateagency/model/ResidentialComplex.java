@@ -21,6 +21,8 @@ public class ResidentialComplex {
     private String name;
     @Column(name = "district")
     private String district;
+    @Column(name = "address")
+    private String address;
     @Column(name = "price")
     private String price;
     @Column(name = "developer")
@@ -29,6 +31,8 @@ public class ResidentialComplex {
     private String promotionHeader;
     @Column(name = "promotionText")
     private String promotionText;
+    @Column(name = "numberOfStoreys")
+    private Integer numberOfStoreys;
     @Embedded
     @AttributeOverrides({
             @AttributeOverride(name = "min", column = @Column(name = "one_room_min")),
@@ -59,32 +63,59 @@ public class ResidentialComplex {
             @AttributeOverride(name = "max", column = @Column(name = "five_room_max"))
     })
     private AreaRange fiveRoom;
+    @Column(columnDefinition = "TEXT", nullable = false)
+    private String description;
     @Column(name = "completedOrNot")
     private Boolean completedOrNot;
     @OneToMany(mappedBy = "residentialComplex", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Apartment> apartments = new ArrayList<>();
     @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "apartment_photos", joinColumns = @JoinColumn(name = "apartment_id"))
+    @CollectionTable(name = "residential_complex_photos", joinColumns = @JoinColumn(name = "residential_complex_id"))
     @Column(name = "photo_url")
     private List<String> photoUrls;
 
-    public ResidentialComplex(Long id, String name, String district, String price,
-                              String developer, String promotionHeader, String promotionText, AreaRange oneRoom,
+    public ResidentialComplex(Long id, String name, String district, String address, String price,
+                              String developer, String promotionHeader, String promotionText, Integer numberOfStoreys, AreaRange oneRoom,
                               AreaRange twoRoom, AreaRange threeRoom, AreaRange fourRoom, AreaRange fiveRoom,
-                              Boolean completedOrNot) {
+                              String description, List<Apartment> apartments, Boolean completedOrNot) {
         this.id = id;
         this.name = name;
         this.district = district;
+        this.address = address;
         this.price = price;
         this.developer = developer;
         this.promotionHeader = promotionHeader;
         this.promotionText = promotionText;
+        this.numberOfStoreys = numberOfStoreys;
         this.oneRoom = oneRoom;
         this.twoRoom = twoRoom;
         this.threeRoom = threeRoom;
         this.fourRoom = fourRoom;
         this.fiveRoom = fiveRoom;
+        this.description = description;
         this.completedOrNot = completedOrNot;
-        this.apartments = new ArrayList<>();
+        this.apartments = apartments;
+    }
+
+    public ResidentialComplex(Long id, String name, String district, String address, String price, String developer,
+                              String promotionHeader, String promotionText, Integer numberOfStoreys, AreaRange oneRoom,
+                              AreaRange twoRoom, AreaRange threeRoom, AreaRange fourRoom,
+                              AreaRange fiveRoom, String description, Boolean completedOrNot) {
+        this.id = id;
+        this.name = name;
+        this.district = district;
+        this.address = address;
+        this.price = price;
+        this.developer = developer;
+        this.promotionHeader = promotionHeader;
+        this.promotionText = promotionText;
+        this.numberOfStoreys = numberOfStoreys;
+        this.oneRoom = oneRoom;
+        this.twoRoom = twoRoom;
+        this.threeRoom = threeRoom;
+        this.fourRoom = fourRoom;
+        this.fiveRoom = fiveRoom;
+        this.description = description;
+        this.completedOrNot = completedOrNot;
     }
 }

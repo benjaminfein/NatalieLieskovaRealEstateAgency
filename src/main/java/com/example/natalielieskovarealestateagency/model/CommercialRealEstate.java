@@ -41,6 +41,8 @@ public class CommercialRealEstate {
     private String ownerPhoneNumber;
     @Column(name = "propertyDescription")
     private String propertyDescription;
+    @Column(name = "adminCreator")
+    private String adminCreator;
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "commercial_real_estate_photos", joinColumns = @JoinColumn(name = "commercial_real_estate_id"))
     @Column(name = "photo_url")

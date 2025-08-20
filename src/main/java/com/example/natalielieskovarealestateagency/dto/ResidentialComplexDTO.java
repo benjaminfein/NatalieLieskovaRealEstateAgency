@@ -13,11 +13,13 @@ public class ResidentialComplexDTO {
     private Long id;
     private String name;
     private String district;
+    private String address;
     private String price;
     private String developer;
     private String promotionHeader;
     private String promotionText;
     private Boolean completedOrNot;
+    private Integer numberOfStoreys;
 
     private AreaRangeDTO oneRoom;
     private AreaRangeDTO twoRoom;
@@ -25,6 +27,6 @@ public class ResidentialComplexDTO {
     private AreaRangeDTO fourRoom;
     private AreaRangeDTO fiveRoom;
 
-    private List<ApartmentCardDTO> apartments;
+    private String description;
     private List<String> photoUrls;
 }
