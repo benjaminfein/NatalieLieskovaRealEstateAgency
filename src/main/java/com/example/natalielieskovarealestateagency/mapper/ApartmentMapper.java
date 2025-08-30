@@ -25,7 +25,7 @@ public class ApartmentMapper {
                 apartment.getHeating(),
                 apartment.getOwnerPhoneNumber(),
                 apartment.getPropertyDescription(),
-                apartment.getAdminCreator(),
+                apartment.getAdminCreatorId(),
                 apartment.getPhotoUrls()
         );
     }
@@ -48,7 +48,7 @@ public class ApartmentMapper {
                 apartmentDTO.getHeating(),
                 apartmentDTO.getOwnerPhoneNumber(),
                 apartmentDTO.getPropertyDescription(),
-                apartmentDTO.getAdminCreator(),
+                apartmentDTO.getAdminCreatorId(),
                 apartmentDTO.getPhotoUrls()
         );
     }
@@ -62,7 +62,7 @@ public class ApartmentMapper {
                 apartment.getTotalArea(),
                 apartment.getLivingArea(),
                 apartment.getKitchenArea(),
-                apartment.getAdminCreator(),
+                apartment.getAdminCreatorId(),
                 apartment.getPhotoUrls()
         );
     }
@@ -76,7 +76,7 @@ public class ApartmentMapper {
                 apartmentCardDTO.getTotalArea(),
                 apartmentCardDTO.getLivingArea(),
                 apartmentCardDTO.getKitchenArea(),
-                apartmentCardDTO.getAdminCreator(),
+                apartmentCardDTO.getAdminCreatorId(),
                 apartmentCardDTO.getPhotoUrls()
         );
     }

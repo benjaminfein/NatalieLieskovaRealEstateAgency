@@ -16,14 +16,13 @@ public class HouseAndTownhouseMapper {
                 houseAndTownhouse.getTotalArea(),
                 houseAndTownhouse.getLivingArea(),
                 houseAndTownhouse.getKitchenArea(),
-                houseAndTownhouse.getFloor(),
                 houseAndTownhouse.getNumberOfStoreys(),
                 houseAndTownhouse.getCeilingHeight(),
                 houseAndTownhouse.getPropertyCondition(),
                 houseAndTownhouse.getHeating(),
                 houseAndTownhouse.getOwnerPhoneNumber(),
                 houseAndTownhouse.getPropertyDescription(),
-                houseAndTownhouse.getAdminCreator(),
+                houseAndTownhouse.getAdminCreatorId(),
                 houseAndTownhouse.getPhotoUrls()
         );
     }
@@ -40,14 +39,13 @@ public class HouseAndTownhouseMapper {
                 houseAndTownhouseDTO.getTotalArea(),
                 houseAndTownhouseDTO.getLivingArea(),
                 houseAndTownhouseDTO.getKitchenArea(),
-                houseAndTownhouseDTO.getFloor(),
                 houseAndTownhouseDTO.getNumberOfStoreys(),
                 houseAndTownhouseDTO.getCeilingHeight(),
                 houseAndTownhouseDTO.getPropertyCondition(),
                 houseAndTownhouseDTO.getHeating(),
                 houseAndTownhouseDTO.getOwnerPhoneNumber(),
                 houseAndTownhouseDTO.getPropertyDescription(),
-                houseAndTownhouseDTO.getAdminCreator(),
+                houseAndTownhouseDTO.getAdminCreatorId(),
                 houseAndTownhouseDTO.getPhotoUrls()
         );
     }

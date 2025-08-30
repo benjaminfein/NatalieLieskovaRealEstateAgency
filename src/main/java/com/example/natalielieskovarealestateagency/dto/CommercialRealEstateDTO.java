@@ -24,6 +24,6 @@ public class CommercialRealEstateDTO {
     private String propertyCondition;
     private String ownerPhoneNumber;
     private String propertyDescription;
-    private String adminCreator;
+    private Long adminCreatorId;
     private List<String> photoUrls;
 }

@@ -20,13 +20,12 @@ public class HouseAndTownhouseDTO {
     private Float totalArea;
     private Float livingArea;
     private Float kitchenArea;
-    private Integer floor;
     private Integer numberOfStoreys;
     private String ceilingHeight;
     private String propertyCondition;
     private String heating;
     private String ownerPhoneNumber;
     private String propertyDescription;
-    private String adminCreator;
+    private Long adminCreatorId;
     private List<String> photoUrls;
 }

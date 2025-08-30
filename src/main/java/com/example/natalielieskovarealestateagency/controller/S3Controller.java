@@ -36,7 +36,7 @@ public class S3Controller {
         return ResponseEntity.ok("Файлы удалены.");
     }
 
-    //Apartment:-----------------------------------------------------------------------------------------------------------
+    //Apartment:--------------------------------------------------------------------------------------------------------
 
     @PostMapping("/upload-apartment-multiple-files")
     public ResponseEntity<String> uploadApartmentMultipleFiles(

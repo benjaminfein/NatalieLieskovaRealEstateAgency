@@ -58,8 +58,10 @@ public class ApartmentController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<ApartmentDTO> updateApartment(@PathVariable("id") Long id,
-                                                        @RequestBody ApartmentDTO apartmentToUpdate) {
+    public ResponseEntity<ApartmentDTO> updateApartment(
+            @PathVariable("id") Long id,
+            @RequestBody ApartmentDTO apartmentToUpdate
+    ) {
         ApartmentDTO apartmentDTO = apartmentService
                 .updateApartment(id, apartmentToUpdate);
         return ResponseEntity.ok(apartmentDTO);
@@ -81,5 +83,12 @@ public class ApartmentController {
     public ResponseEntity<List<Integer>> getAllRoomCounts() {
         List<Integer> counts = apartmentService.getAllRoomCounts();
         return ResponseEntity.ok(counts);
+    }
+
+    @GetMapping("/get-last-created-apartment-by-user/{id}")
+    public ResponseEntity<ApartmentDTO> getLastCreatedApartmentByUserId(@PathVariable("id") Long adminCreatorId) {
+        ApartmentDTO apartmentDTO = apartmentService
+                .getLastCreatedApartmentByUserId(adminCreatorId);
+        return ResponseEntity.ok(apartmentDTO);
     }
 }

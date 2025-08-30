@@ -20,4 +20,6 @@ public interface HouseAndTownhouseService {
     List<String> getAllDistricts();
 
     List<Integer> getAllRoomCounts();
+
+    HouseAndTownhouseDTO getLastCreatedHouseOrTownhouseByUserId(Long adminCreatorId);
 }

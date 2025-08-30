@@ -1,5 +1,6 @@
 package com.example.natalielieskovarealestateagency.controller;
 
+import com.example.natalielieskovarealestateagency.dto.ApartmentDTO;
 import com.example.natalielieskovarealestateagency.dto.CommercialRealEstateDTO;
 import com.example.natalielieskovarealestateagency.model.PagedResponse;
 import com.example.natalielieskovarealestateagency.service.CommercialRealEstateService;
@@ -37,13 +38,16 @@ public class CommercialRealEstateController {
             @RequestParam(defaultValue = "10") int size
     ) {
         Pageable pageable = PageRequest.of(page, size);
-        PagedResponse<CommercialRealEstateDTO> response = commercialRealEstateService.findAllCommercialRealEstate(pageable);
+        PagedResponse<CommercialRealEstateDTO> response = commercialRealEstateService
+                .findAllCommercialRealEstate(pageable);
         return ResponseEntity.ok(response);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CommercialRealEstateDTO> updateCommercial(@PathVariable Long id,
-                                                          @RequestBody CommercialRealEstateDTO dto) {
+    public ResponseEntity<CommercialRealEstateDTO> updateCommercial(
+            @PathVariable Long id,
+            @RequestBody CommercialRealEstateDTO dto
+    ) {
         return ResponseEntity.ok(commercialRealEstateService.updateCommercialRealEstate(id, dto));
     }
 
@@ -63,5 +67,12 @@ public class CommercialRealEstateController {
     public ResponseEntity<List<Integer>> getAllRoomCounts() {
         List<Integer> counts = commercialRealEstateService.getAllRoomCounts();
         return ResponseEntity.ok(counts);
+    }
+
+    @GetMapping("/get-last-created-commercial-by-user/{id}")
+    public ResponseEntity<CommercialRealEstateDTO> getLastCreatedCommercialByUserId(@PathVariable("id") Long adminCreatorId) {
+        CommercialRealEstateDTO commercialDTO = commercialRealEstateService
+                .getLastCreatedCommercialByUserId(adminCreatorId);
+        return ResponseEntity.ok(commercialDTO);
     }
 }

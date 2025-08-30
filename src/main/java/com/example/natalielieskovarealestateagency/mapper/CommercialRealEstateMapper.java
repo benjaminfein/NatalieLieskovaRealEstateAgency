@@ -23,7 +23,7 @@ public class CommercialRealEstateMapper {
                 entity.getPropertyCondition(),
                 entity.getOwnerPhoneNumber(),
                 entity.getPropertyDescription(),
-                entity.getAdminCreator(),
+                entity.getAdminCreatorId(),
                 entity.getPhotoUrls()
         );
     }
@@ -44,7 +44,7 @@ public class CommercialRealEstateMapper {
                 dto.getPropertyCondition(),
                 dto.getOwnerPhoneNumber(),
                 dto.getPropertyDescription(),
-                dto.getAdminCreator(),
+                dto.getAdminCreatorId(),
                 dto.getPhotoUrls()
         );
     }

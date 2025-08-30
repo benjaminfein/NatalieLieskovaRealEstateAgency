@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface HouseAndTownhouseRepository extends JpaRepository<HouseAndTownhouse, Long> {
@@ -18,4 +19,6 @@ public interface HouseAndTownhouseRepository extends JpaRepository<HouseAndTownh
 
     @Query("SELECT DISTINCT a.countOfRooms FROM HouseAndTownhouse a WHERE a.countOfRooms IS NOT NULL")
     List<Integer> findAllDistinctRoomCounts();
+
+    Optional<HouseAndTownhouse> findTopByAdminCreatorIdOrderByIdDesc(Long adminCreatorId);
 }

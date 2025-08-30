@@ -9,7 +9,7 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "comercial_real_estate", schema = "public")
+@Table(name = "commercial_real_estate", schema = "public")
 @NoArgsConstructor
 @AllArgsConstructor
 public class CommercialRealEstate {
@@ -42,7 +42,7 @@ public class CommercialRealEstate {
     @Column(name = "propertyDescription")
     private String propertyDescription;
     @Column(name = "adminCreator")
-    private String adminCreator;
+    private Long adminCreatorId;
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "commercial_real_estate_photos", joinColumns = @JoinColumn(name = "commercial_real_estate_id"))
     @Column(name = "photo_url")

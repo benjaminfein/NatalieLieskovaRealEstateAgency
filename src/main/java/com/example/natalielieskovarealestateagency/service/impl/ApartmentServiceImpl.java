@@ -98,7 +98,7 @@ public class ApartmentServiceImpl implements ApartmentService {
         updatedApartment.setHeating(apartmentToUpdate.getHeating());
         updatedApartment.setOwnerPhoneNumber(apartmentToUpdate.getOwnerPhoneNumber());
         updatedApartment.setPropertyDescription(apartmentToUpdate.getPropertyDescription());
-        updatedApartment.setAdminCreator(apartmentToUpdate.getAdminCreator());
+        updatedApartment.setAdminCreatorId(apartmentToUpdate.getAdminCreatorId());
         updatedApartment.setPhotoUrls(apartmentToUpdate.getPhotoUrls());
 
         ResidentialComplex oldComplex = updatedApartment.getResidentialComplex();
@@ -135,5 +135,13 @@ public class ApartmentServiceImpl implements ApartmentService {
     @Override
     public List<Integer> getAllRoomCounts() {
         return apartmentRepository.findAllDistinctRoomCounts();
+    }
+
+    @Override
+    public ApartmentDTO getLastCreatedApartmentByUserId(Long adminCreatorId) {
+        return apartmentRepository
+                .findTopByAdminCreatorIdOrderByIdDesc(adminCreatorId)
+                .map(ApartmentMapper::maptoApartmentDTO)
+                .orElse(null);
     }
 }

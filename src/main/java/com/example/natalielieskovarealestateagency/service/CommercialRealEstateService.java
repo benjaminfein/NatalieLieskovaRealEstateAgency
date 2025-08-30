@@ -20,4 +20,6 @@ public interface CommercialRealEstateService {
     List<String> getAllDistricts();
 
     List<Integer> getAllRoomCounts();
+
+    CommercialRealEstateDTO getLastCreatedCommercialByUserId(Long adminCreatorId);
 }

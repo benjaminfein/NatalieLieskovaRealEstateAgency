@@ -1,5 +1,6 @@
 package com.example.natalielieskovarealestateagency.controller;
 
+import com.example.natalielieskovarealestateagency.dto.ApartmentDTO;
 import com.example.natalielieskovarealestateagency.dto.HouseAndTownhouseDTO;
 import com.example.natalielieskovarealestateagency.model.PagedResponse;
 import com.example.natalielieskovarealestateagency.service.HouseAndTownhouseService;
@@ -22,8 +23,11 @@ public class HouseAndTownhouseController {
     private HouseAndTownhouseService houseAndTownhouseService;
 
     @PostMapping
-    public ResponseEntity<HouseAndTownhouseDTO> createHouseAndTownhouse(@RequestBody HouseAndTownhouseDTO houseAndTownhouseDTO) {
-        HouseAndTownhouseDTO savedHouseAndTownhouse = houseAndTownhouseService.createHouseAndTownhouse(houseAndTownhouseDTO);
+    public ResponseEntity<HouseAndTownhouseDTO> createHouseAndTownhouse(
+            @RequestBody HouseAndTownhouseDTO houseAndTownhouseDTO
+    ) {
+        HouseAndTownhouseDTO savedHouseAndTownhouse = houseAndTownhouseService
+                .createHouseAndTownhouse(houseAndTownhouseDTO);
         return new ResponseEntity<>(savedHouseAndTownhouse, HttpStatus.CREATED);
     }
 
@@ -44,8 +48,10 @@ public class HouseAndTownhouseController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<HouseAndTownhouseDTO> updateHouseAndTownhouse(@PathVariable("id") Long id,
-                                                                          @RequestBody HouseAndTownhouseDTO houseAndTownhouseToUpdate) {
+    public ResponseEntity<HouseAndTownhouseDTO> updateHouseAndTownhouse(
+            @PathVariable("id") Long id,
+            @RequestBody HouseAndTownhouseDTO houseAndTownhouseToUpdate
+    ) {
         HouseAndTownhouseDTO houseAndTownhouseDTO = houseAndTownhouseService
                 .updateHouseAndTownhouse(id, houseAndTownhouseToUpdate);
         return ResponseEntity.ok(houseAndTownhouseDTO);
@@ -67,5 +73,14 @@ public class HouseAndTownhouseController {
     public ResponseEntity<List<Integer>> getAllRoomCounts() {
         List<Integer> counts = houseAndTownhouseService.getAllRoomCounts();
         return ResponseEntity.ok(counts);
+    }
+
+    @GetMapping("/get-last-created-house-or-townhouse-by-user/{id}")
+    public ResponseEntity<HouseAndTownhouseDTO> getLastCreatedHouseOrTownhouseByUserId(
+            @PathVariable("id") Long adminCreatorId
+    ) {
+        HouseAndTownhouseDTO houseDTO = houseAndTownhouseService
+                .getLastCreatedHouseOrTownhouseByUserId(adminCreatorId);
+        return ResponseEntity.ok(houseDTO);
     }
 }

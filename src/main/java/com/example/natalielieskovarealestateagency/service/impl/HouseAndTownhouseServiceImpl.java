@@ -69,7 +69,6 @@ public class HouseAndTownhouseServiceImpl implements HouseAndTownhouseService {
         houseAndTownhouse.setTotalArea(houseAndTownhouseToUpdate.getTotalArea());
         houseAndTownhouse.setLivingArea(houseAndTownhouseToUpdate.getLivingArea());
         houseAndTownhouse.setKitchenArea(houseAndTownhouseToUpdate.getKitchenArea());
-        houseAndTownhouse.setFloor(houseAndTownhouseToUpdate.getFloor());
         houseAndTownhouse.setNumberOfStoreys(houseAndTownhouseToUpdate.getNumberOfStoreys());
         houseAndTownhouse.setCeilingHeight(houseAndTownhouseToUpdate.getCeilingHeight());
         houseAndTownhouse.setPropertyCondition(houseAndTownhouseToUpdate.getPropertyCondition());
@@ -96,5 +95,13 @@ public class HouseAndTownhouseServiceImpl implements HouseAndTownhouseService {
     @Override
     public List<Integer> getAllRoomCounts() {
         return houseAndTownhouseRepository.findAllDistinctRoomCounts();
+    }
+
+    @Override
+    public HouseAndTownhouseDTO getLastCreatedHouseOrTownhouseByUserId(Long adminCreatorId) {
+        return houseAndTownhouseRepository
+                .findTopByAdminCreatorIdOrderByIdDesc(adminCreatorId)
+                .map(HouseAndTownhouseMapper::maptoHouseAndTownhouseDTO)
+                .orElse(null);
     }
 }

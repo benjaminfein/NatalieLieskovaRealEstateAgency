@@ -1,12 +1,9 @@
 package com.example.natalielieskovarealestateagency.service.impl;
 
-import com.example.natalielieskovarealestateagency.dto.ApartmentDTO;
 import com.example.natalielieskovarealestateagency.dto.CommercialRealEstateDTO;
 import com.example.natalielieskovarealestateagency.exception.CommercialRealEstateNotFoundException;
 import com.example.natalielieskovarealestateagency.exception.ResidentialComplexNotFoundException;
-import com.example.natalielieskovarealestateagency.mapper.ApartmentMapper;
 import com.example.natalielieskovarealestateagency.mapper.CommercialRealEstateMapper;
-import com.example.natalielieskovarealestateagency.model.Apartment;
 import com.example.natalielieskovarealestateagency.model.CommercialRealEstate;
 import com.example.natalielieskovarealestateagency.model.PagedResponse;
 import com.example.natalielieskovarealestateagency.model.ResidentialComplex;
@@ -19,7 +16,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -95,5 +91,13 @@ public class CommercialRealEstateServiceImpl implements CommercialRealEstateServ
     @Override
     public List<Integer> getAllRoomCounts() {
         return commercialRealEstateRepository.findAllDistinctRoomCounts();
+    }
+
+    @Override
+    public CommercialRealEstateDTO getLastCreatedCommercialByUserId(Long adminCreatorId) {
+        return commercialRealEstateRepository
+                .findTopByAdminCreatorIdOrderByIdDesc(adminCreatorId)
+                .map(CommercialRealEstateMapper::toDTO)
+                .orElse(null);
     }
 }

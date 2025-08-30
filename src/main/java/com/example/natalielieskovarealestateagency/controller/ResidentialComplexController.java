@@ -67,8 +67,10 @@ public class ResidentialComplexController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<ResidentialComplexDTO> updateResidentialComplex(@PathVariable("id") Long id,
-                                                                          @RequestBody ResidentialComplexDTO residentialComplexToUpdate) {
+    public ResponseEntity<ResidentialComplexDTO> updateResidentialComplex(
+            @PathVariable("id") Long id,
+            @RequestBody ResidentialComplexDTO residentialComplexToUpdate
+    ) {
         ResidentialComplexDTO residentialComplexDTO = residentialComplexService
                 .updateResidentialComplex(id, residentialComplexToUpdate);
         return ResponseEntity.ok(residentialComplexDTO);

@@ -27,4 +27,6 @@ public interface ApartmentService {
     List<String> getAllDistricts();
 
     List<Integer> getAllRoomCounts();
+
+    ApartmentDTO getLastCreatedApartmentByUserId(Long adminCreatorId);
 }

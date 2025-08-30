@@ -34,8 +34,6 @@ public class HouseAndTownhouse {
     private Float livingArea;
     @Column(name = "kitchenArea")
     private Float kitchenArea;
-    @Column(name = "floor")
-    private Integer floor;
     @Column(name = "numberOfStoreys")
     private Integer numberOfStoreys;
     @Column(name = "ceilingHeight")
@@ -49,7 +47,7 @@ public class HouseAndTownhouse {
     @Column(name = "propertyDescription")
     private String propertyDescription;
     @Column(name = "adminCreator")
-    private String adminCreator;
+    private Long adminCreatorId;
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "house_and_townhouse_photos", joinColumns = @JoinColumn(name = "house_and_townhouse_id"))
     @Column(name = "photo_url")
