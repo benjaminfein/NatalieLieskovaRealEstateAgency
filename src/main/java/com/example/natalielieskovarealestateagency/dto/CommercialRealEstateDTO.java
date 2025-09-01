@@ -15,8 +15,8 @@ public class CommercialRealEstateDTO {
     private String address;
     private Integer price;
     private Integer countOfRooms;
-    private String residentialComplexName;
-    private Long residentialId;
+    private String nameOfResidentialComplex;
+    private Long residentialComplexId;
     private Float totalArea;
     private Integer floor;
     private Integer numberOfStoreys;

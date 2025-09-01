@@ -26,8 +26,8 @@ public class CommercialRealEstateServiceImpl implements CommercialRealEstateServ
     @Override
     public CommercialRealEstateDTO createCommercialRealEstate(CommercialRealEstateDTO dto) {
         ResidentialComplex complex = null;
-        if (dto.getResidentialComplexName() != null && !dto.getResidentialComplexName().isBlank()) {
-            complex = residentialComplexRepository.findByName(dto.getResidentialComplexName())
+        if (dto.getNameOfResidentialComplex() != null && !dto.getNameOfResidentialComplex().isBlank()) {
+            complex = residentialComplexRepository.findByName(dto.getNameOfResidentialComplex())
                     .orElseThrow(() -> new ResidentialComplexNotFoundException("ЖК не найден"));
         }
 
@@ -66,10 +66,10 @@ public class CommercialRealEstateServiceImpl implements CommercialRealEstateServ
                 .orElseThrow(() -> new CommercialRealEstateNotFoundException("Не найден объект с id: " + id));
 
         ResidentialComplex complex = null;
-        if (commercialRealEstateDTO.getResidentialComplexName() != null && !commercialRealEstateDTO
-                .getResidentialComplexName()
+        if (commercialRealEstateDTO.getNameOfResidentialComplex() != null && !commercialRealEstateDTO
+                .getNameOfResidentialComplex()
                 .isBlank()) {
-            complex = residentialComplexRepository.findByName(commercialRealEstateDTO.getResidentialComplexName())
+            complex = residentialComplexRepository.findByName(commercialRealEstateDTO.getNameOfResidentialComplex())
                     .orElseThrow(() -> new ResidentialComplexNotFoundException("ЖК не найден"));
         }
 
