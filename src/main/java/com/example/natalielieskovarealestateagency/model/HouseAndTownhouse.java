@@ -44,7 +44,7 @@ public class HouseAndTownhouse {
     private String heating;
     @Column(name = "ownerPhoneNumber")
     private String ownerPhoneNumber;
-    @Column(name = "propertyDescription")
+    @Column(name = "propertyDescription", columnDefinition = "TEXT")
     private String propertyDescription;
     @Column(name = "adminCreator")
     private Long adminCreatorId;

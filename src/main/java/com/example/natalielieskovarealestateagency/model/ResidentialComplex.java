@@ -10,7 +10,7 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "residental_complex", schema = "public")
+@Table(name = "residential_complex", schema = "public")
 @NoArgsConstructor
 @AllArgsConstructor
 public class ResidentialComplex {

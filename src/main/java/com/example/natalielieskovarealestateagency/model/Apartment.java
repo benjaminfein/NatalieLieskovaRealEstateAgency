@@ -24,8 +24,8 @@ public class Apartment {
     private Integer price;
     @Column(name = "countOfRooms")
     private Integer countOfRooms;
-    @ManyToOne
-    @JoinColumn(name = "residential_complex_id")  // внешний ключ
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "residential_complex_id", nullable = false)
     private ResidentialComplex residentialComplex;
     @Column(name = "totalArea")
     private Float totalArea;
@@ -45,7 +45,7 @@ public class Apartment {
     private String heating;
     @Column(name = "ownerPhoneNumber")
     private String ownerPhoneNumber;
-    @Column(name = "propertyDescription")
+    @Column(name = "propertyDescription", columnDefinition = "TEXT")
     private String propertyDescription;
     @Column(name = "adminCreator")
     private Long adminCreatorId;
