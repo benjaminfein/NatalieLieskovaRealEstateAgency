@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
 import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
@@ -386,11 +387,12 @@ public class S3ServiceImpl implements S3Service {
 
     //------------------------------------------------------------------------------------------------------------------
     //------------------------------------------------------------------------------------------------------------------
-    //HOUSE AND TOWNHOUSE METHODS:
+    //RESIDENTIAL COMPLEX METHODS:
     //------------------------------------------------------------------------------------------------------------------
     //------------------------------------------------------------------------------------------------------------------
 
     @Override
+    @Transactional
     public void uploadResidentialComplexFiles(List<MultipartFile> files, Long residentialComplexId) throws IOException {
         log.info("[S3ServiceImpl] Загрузка {} файлов в S3 для жилкомплекса с ID {}", files.size(), residentialComplexId);
         S3Client s3Client = createS3Client();
