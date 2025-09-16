@@ -21,6 +21,7 @@ public class HouseAndTownhouseMapper {
                 houseAndTownhouse.getPropertyCondition(),
                 houseAndTownhouse.getHeating(),
                 houseAndTownhouse.getOwnerPhoneNumber(),
+                houseAndTownhouse.getVideoUrl(),
                 houseAndTownhouse.getPropertyDescription(),
                 houseAndTownhouse.getAdminCreatorId(),
                 houseAndTownhouse.getPhotoUrls()
@@ -44,6 +45,7 @@ public class HouseAndTownhouseMapper {
                 houseAndTownhouseDTO.getPropertyCondition(),
                 houseAndTownhouseDTO.getHeating(),
                 houseAndTownhouseDTO.getOwnerPhoneNumber(),
+                houseAndTownhouseDTO.getVideoUrl(),
                 houseAndTownhouseDTO.getPropertyDescription(),
                 houseAndTownhouseDTO.getAdminCreatorId(),
                 houseAndTownhouseDTO.getPhotoUrls()

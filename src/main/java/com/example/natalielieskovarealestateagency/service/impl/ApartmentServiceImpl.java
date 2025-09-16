@@ -97,6 +97,7 @@ public class ApartmentServiceImpl implements ApartmentService {
         updatedApartment.setPropertyCondition(apartmentToUpdate.getPropertyCondition());
         updatedApartment.setHeating(apartmentToUpdate.getHeating());
         updatedApartment.setOwnerPhoneNumber(apartmentToUpdate.getOwnerPhoneNumber());
+        updatedApartment.setVideoUrl(apartmentToUpdate.getVideoUrl());
         updatedApartment.setPropertyDescription(apartmentToUpdate.getPropertyDescription());
         updatedApartment.setAdminCreatorId(apartmentToUpdate.getAdminCreatorId());
         updatedApartment.setPhotoUrls(apartmentToUpdate.getPhotoUrls());

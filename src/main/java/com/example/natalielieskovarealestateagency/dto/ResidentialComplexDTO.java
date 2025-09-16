@@ -27,6 +27,7 @@ public class ResidentialComplexDTO {
     private AreaRangeDTO fourRoom;
     private AreaRangeDTO fiveRoom;
 
+    private String videoUrl;
     private String description;
     private List<String> photoUrls;
 }

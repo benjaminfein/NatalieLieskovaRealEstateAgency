@@ -74,6 +74,7 @@ public class HouseAndTownhouseServiceImpl implements HouseAndTownhouseService {
         houseAndTownhouse.setPropertyCondition(houseAndTownhouseToUpdate.getPropertyCondition());
         houseAndTownhouse.setHeating(houseAndTownhouseToUpdate.getHeating());
         houseAndTownhouse.setOwnerPhoneNumber(houseAndTownhouseToUpdate.getOwnerPhoneNumber());
+        houseAndTownhouse.setVideoUrl(houseAndTownhouseToUpdate.getVideoUrl());
         houseAndTownhouse.setPropertyDescription(houseAndTownhouseToUpdate.getPropertyDescription());
         HouseAndTownhouse savedHouseAndTownhouse = houseAndTownhouseRepository.save(houseAndTownhouse);
         return HouseAndTownhouseMapper.maptoHouseAndTownhouseDTO(savedHouseAndTownhouse);

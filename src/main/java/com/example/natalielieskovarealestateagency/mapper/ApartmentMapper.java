@@ -24,6 +24,7 @@ public class ApartmentMapper {
                 apartment.getPropertyCondition(),
                 apartment.getHeating(),
                 apartment.getOwnerPhoneNumber(),
+                apartment.getVideoUrl(),
                 apartment.getPropertyDescription(),
                 apartment.getAdminCreatorId(),
                 apartment.getPhotoUrls()
@@ -47,6 +48,7 @@ public class ApartmentMapper {
                 apartmentDTO.getPropertyCondition(),
                 apartmentDTO.getHeating(),
                 apartmentDTO.getOwnerPhoneNumber(),
+                apartmentDTO.getVideoUrl(),
                 apartmentDTO.getPropertyDescription(),
                 apartmentDTO.getAdminCreatorId(),
                 apartmentDTO.getPhotoUrls()

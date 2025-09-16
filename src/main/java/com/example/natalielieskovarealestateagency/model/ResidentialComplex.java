@@ -63,6 +63,8 @@ public class ResidentialComplex {
             @AttributeOverride(name = "max", column = @Column(name = "five_room_max"))
     })
     private AreaRange fiveRoom;
+    @Column(name = "videoUrl")
+    private String videoUrl;
     @Column(columnDefinition = "TEXT", nullable = false)
     private String description;
     @Column(name = "completedOrNot")
@@ -77,7 +79,7 @@ public class ResidentialComplex {
     public ResidentialComplex(Long id, String name, String district, String address, String price,
                               String developer, String promotionHeader, String promotionText, Integer numberOfStoreys, AreaRange oneRoom,
                               AreaRange twoRoom, AreaRange threeRoom, AreaRange fourRoom, AreaRange fiveRoom,
-                              String description, List<Apartment> apartments, Boolean completedOrNot) {
+                              String videoUrl, String description, List<Apartment> apartments, Boolean completedOrNot) {
         this.id = id;
         this.name = name;
         this.district = district;
@@ -92,6 +94,7 @@ public class ResidentialComplex {
         this.threeRoom = threeRoom;
         this.fourRoom = fourRoom;
         this.fiveRoom = fiveRoom;
+        this.videoUrl = videoUrl;
         this.description = description;
         this.completedOrNot = completedOrNot;
         this.apartments = apartments;
@@ -100,7 +103,7 @@ public class ResidentialComplex {
     public ResidentialComplex(Long id, String name, String district, String address, String price, String developer,
                               String promotionHeader, String promotionText, Integer numberOfStoreys, AreaRange oneRoom,
                               AreaRange twoRoom, AreaRange threeRoom, AreaRange fourRoom,
-                              AreaRange fiveRoom, String description, Boolean completedOrNot) {
+                              AreaRange fiveRoom, String videoUrl, String description, Boolean completedOrNot) {
         this.id = id;
         this.name = name;
         this.district = district;
@@ -115,6 +118,7 @@ public class ResidentialComplex {
         this.threeRoom = threeRoom;
         this.fourRoom = fourRoom;
         this.fiveRoom = fiveRoom;
+        this.videoUrl = videoUrl;
         this.description = description;
         this.completedOrNot = completedOrNot;
     }

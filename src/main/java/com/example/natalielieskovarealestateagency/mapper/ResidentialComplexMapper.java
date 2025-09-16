@@ -26,6 +26,7 @@ public class ResidentialComplexMapper {
                 toAreaRangeDTO(residentialComplex.getThreeRoom()),
                 toAreaRangeDTO(residentialComplex.getFourRoom()),
                 toAreaRangeDTO(residentialComplex.getFiveRoom()),
+                residentialComplex.getVideoUrl(),
                 residentialComplex.getDescription(),
                 residentialComplex.getPhotoUrls()
         );
@@ -47,6 +48,7 @@ public class ResidentialComplexMapper {
                 toAreaRange(residentialComplexDTO.getThreeRoom()),
                 toAreaRange(residentialComplexDTO.getFourRoom()),
                 toAreaRange(residentialComplexDTO.getFiveRoom()),
+                residentialComplexDTO.getVideoUrl(),
                 residentialComplexDTO.getDescription(),
                 residentialComplexDTO.getCompletedOrNot()
         );
@@ -71,6 +73,7 @@ public class ResidentialComplexMapper {
                 toAreaRangeDTO(residentialComplex.getThreeRoom()),
                 toAreaRangeDTO(residentialComplex.getFourRoom()),
                 toAreaRangeDTO(residentialComplex.getFiveRoom()),
+                residentialComplex.getVideoUrl(),
                 residentialComplex.getDescription(),
                 residentialComplex.getPhotoUrls(),
                 residentialComplex.getApartments().stream()
@@ -97,6 +100,7 @@ public class ResidentialComplexMapper {
                 toAreaRange(residentialComplexWithApartmentsDTO.getThreeRoom()),
                 toAreaRange(residentialComplexWithApartmentsDTO.getFourRoom()),
                 toAreaRange(residentialComplexWithApartmentsDTO.getFiveRoom()),
+                residentialComplexWithApartmentsDTO.getVideoUrl(),
                 residentialComplexWithApartmentsDTO.getDescription(),
                 residentialComplexWithApartmentsDTO.getApartments().stream()
                         .map(ApartmentMapper::mapToApartmentFromCardDTO)

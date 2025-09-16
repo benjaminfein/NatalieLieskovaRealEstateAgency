@@ -128,6 +128,7 @@ public class ResidentialComplexServiceImpl implements ResidentialComplexService 
         residentialComplex.setPromotionText(residentialComplexToUpdate.getPromotionText());
         residentialComplex.setCompletedOrNot(residentialComplexToUpdate.getCompletedOrNot());
         residentialComplex.setNumberOfStoreys(residentialComplexToUpdate.getNumberOfStoreys());
+        residentialComplex.setVideoUrl(residentialComplexToUpdate.getVideoUrl());
         residentialComplex.setDescription(residentialComplexToUpdate.getDescription());
         ResidentialComplex updatedResidentialComplex = residentialComplexRepository.save(residentialComplex);
         return ResidentialComplexMapper.maptoResidentialComplexDTO(updatedResidentialComplex);

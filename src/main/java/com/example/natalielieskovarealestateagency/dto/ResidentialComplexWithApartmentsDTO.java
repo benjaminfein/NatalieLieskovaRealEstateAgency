@@ -16,7 +16,7 @@ public class ResidentialComplexWithApartmentsDTO extends ResidentialComplexDTO {
                                                String promotionHeader, String promotionText, Integer numberOfStoreys, Boolean completedOrNot,
                                                AreaRangeDTO oneRoom, AreaRangeDTO twoRoom,
                                                AreaRangeDTO threeRoom, AreaRangeDTO fourRoom,
-                                               AreaRangeDTO fiveRoom, String description, List<String> photoUrls,
+                                               AreaRangeDTO fiveRoom, String videoUrl, String description, List<String> photoUrls,
                                                List<ApartmentCardDTO> apartments) {
         this.setId(id);
         this.setName(name);
@@ -33,6 +33,7 @@ public class ResidentialComplexWithApartmentsDTO extends ResidentialComplexDTO {
         this.setThreeRoom(threeRoom);
         this.setFourRoom(fourRoom);
         this.setFiveRoom(fiveRoom);
+        this.setVideoUrl(videoUrl);
         this.setDescription(description);
         this.setPhotoUrls(photoUrls);
         this.apartments = apartments;

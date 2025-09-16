@@ -26,6 +26,7 @@ public class ApartmentDTO {
     private String propertyCondition;
     private String heating;
     private String ownerPhoneNumber;
+    private String videoUrl;
     private String propertyDescription;
     private Long adminCreatorId;
     private List<String> photoUrls;
