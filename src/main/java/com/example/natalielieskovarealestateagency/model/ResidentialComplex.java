@@ -29,7 +29,7 @@ public class ResidentialComplex {
     private String developer;
     @Column(name = "promotionHeader")
     private String promotionHeader;
-    @Column(name = "promotionText")
+    @Column(name = "promotionText", columnDefinition = "TEXT")
     private String promotionText;
     @Column(name = "numberOfStoreys")
     private Integer numberOfStoreys;
